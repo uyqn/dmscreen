@@ -56,6 +56,10 @@ Found something outside your issue? Open a new issue, label it, link it, and kee
   covers it. Threads are resolved by the person who opened them or by agreement, never left
   hanging.
 - Squash or rebase merges are both fine; keep the resulting history readable.
+- CI skips Markdown-only changes. A no-op twin workflow reports the required `build` check as
+  passed on such PRs so they stay mergeable. Documentation-only PRs are opened and merged by the
+  project's Claude session without waiting for a human review; code PRs are merged by the
+  maintainer.
 
 ## Rules content and licences
 
