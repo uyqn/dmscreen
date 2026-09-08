@@ -2,6 +2,7 @@ plugins {
     java
     id("org.springframework.boot") version "4.1.1"
     id("io.spring.dependency-management") version "1.1.7"
+    id("com.diffplug.spotless") version "8.10.2"
 }
 
 group = "no.uyqn"
@@ -57,6 +58,16 @@ dependencyManagement {
         mavenBom("org.springframework.modulith:spring-modulith-bom:${property("springModulithVersion")}")
         mavenBom("org.springframework.ai:spring-ai-bom:${property("springAiVersion")}")
     }
+}
+
+spotless {
+    java {
+        palantirJavaFormat("2.98.0")
+        forbidWildcardImports()
+        forbidModuleImports()
+        shortenFullyQualifiedTypes()
+    }
+    kotlinGradle { ktlint() }
 }
 
 tasks.withType<Test> {

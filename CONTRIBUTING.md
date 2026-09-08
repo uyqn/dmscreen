@@ -38,6 +38,7 @@ Found something outside your issue? Open a new issue, label it, link it, and kee
    `chore-<slug>`.
 2. Write the tests first, then the code, then run `./gradlew test`. Do not change an existing test
    to make new code pass; a red pre-existing test is information about the change.
+   Format with `./gradlew spotlessApply`; CI rejects unformatted code.
 3. Keep module boundaries: `ApplicationModules.verify()` runs in the suite and fails the build on
    a wrong import. If it fails, the fix is in the design, not in the test.
 4. Commit in small logical units using [Conventional Commits](https://www.conventionalcommits.org/):
@@ -51,7 +52,7 @@ Found something outside your issue? Open a new issue, label it, link it, and kee
 ## Review and merge
 
 - `main` is protected: pull requests only, no force pushes, all review threads resolved, and the
-  CI build green once the workflow exists.
+  CI build green.
 - Every review comment gets a reply: either a fix with the commit named, or the decision that
   covers it. Threads are resolved by the person who opened them or by agreement, never left
   hanging.

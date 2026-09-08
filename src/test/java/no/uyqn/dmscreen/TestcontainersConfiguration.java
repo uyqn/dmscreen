@@ -14,5 +14,4 @@ class TestcontainersConfiguration {
     PostgreSQLContainer pgvectorContainer() {
         return new PostgreSQLContainer(DockerImageName.parse("pgvector/pgvector:pg16"));
     }
-
 }
