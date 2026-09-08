@@ -68,7 +68,12 @@ Docker Desktop needs neither.
 git clone git@github.com:uyqn/dmscreen.git && cd dmscreen
 ./gradlew test        # the "you are ready" check: compiles, starts Postgres in Testcontainers, runs everything
 ./gradlew bootRun     # starts Postgres from compose.yaml, then the server on http://localhost:8080
+./gradlew spotlessApply  # formats Java (palantir-java-format) and the Gradle scripts (ktlint)
 ```
+
+`./gradlew build` runs `spotlessCheck` and fails on unformatted code, so run `spotlessApply` before
+you commit. In IntelliJ, install the *palantir-java-format* plugin and enable it under *Settings →
+palantir-java-format*, so *Reformat Code* produces what the build expects.
 
 The first `test` run pulls the `pgvector/pgvector:pg16` image and takes a minute or two. Later
 runs reuse it.
