@@ -78,8 +78,7 @@ runs reuse it.
 ## 4. IDE
 
 **IntelliJ IDEA**: *File → Open* the project directory; IntelliJ imports the Gradle build. Then
-*Project Structure → Project → SDK*: choose the JDK 25. Run `Application` from the gutter, or
-`TestDmscreenApplication` under `src/test` to run with Testcontainers instead of Compose.
+*Project Structure → Project → SDK*: choose the JDK 25. Run `Application` from the gutter.
 
 Recommended settings: enable *Build project automatically* so DevTools restarts pick up
 changes, and set Gradle to build and run with the project JDK (*Settings → Build Tools → Gradle
