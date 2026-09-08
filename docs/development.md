@@ -44,13 +44,23 @@ allocation is remembered in `~/.colima/default/colima.yaml`.
 
 **Docker Desktop** works out of the box on macOS, Windows and Linux.
 
-If tests fail with `Could not find a valid Docker environment` on Colima, point Testcontainers at
-the socket explicitly:
+On Colima, Testcontainers needs two hints (verified 2026-09-08). It ignores `docker context`, so
+it cannot find the socket, and its cleanup container Ryuk mounts the socket by path, which inside
+the VM is `/var/run/docker.sock`, not the host path. Without them `./gradlew test` fails with
+`Could not find a valid Docker environment`, then with `Container startup failed for image
+testcontainers/ryuk`.
+
+```properties
+# ~/.testcontainers.properties
+docker.host=unix:///Users/<you>/.colima/default/docker.sock
+```
 
 ```bash
-export DOCKER_HOST="unix://$HOME/.colima/default/docker.sock"
+# ~/.zshrc (Testcontainers reads this one from the environment only)
 export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock
 ```
+
+Docker Desktop needs neither.
 
 ## 3. Build, test, run
 
