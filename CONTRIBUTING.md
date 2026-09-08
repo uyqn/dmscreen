@@ -8,7 +8,8 @@ reviewer with ten minutes can follow it. This page says how work moves from an i
 - Read the [design document](docs/design/2026-09-08-dmscreen-design.md). It is the baseline;
   a change that disagrees with it edits the document in the same PR and says why.
 - Read [`CLAUDE.md`](CLAUDE.md) for module and code rules. They apply to humans too.
-- Local setup is in the [README](README.md#getting-started): a JDK 25, Docker, `./gradlew bootRun`.
+- Local setup: the short version is in the [README](README.md#getting-started), the full one
+  in [docs/development.md](docs/development.md). `./gradlew test` passing means you are ready.
 
 ## Picking work
 

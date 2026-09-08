@@ -97,6 +97,9 @@ Run the tests:
 ./gradlew test
 ```
 
+Full setup notes, including JDK, Docker and IDE choices, are in
+[docs/development.md](docs/development.md).
+
 ## Roadmap
 
 - [x] Project skeleton: Spring Boot 4.1, Spring AI MCP server, Modulith, Postgres
