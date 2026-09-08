@@ -31,8 +31,11 @@ Found something outside your issue? Open a new issue, label it, link it, and kee
 
 ## Making a change
 
-1. Branch from `main`: `type/short-description`, e.g. `feat/dice-expression-parser`,
-   `fix/roll-request-expiry`, `docs/contributing`.
+1. Create the branch from the issue: on the issue page, *Development → Create a branch*. GitHub
+   names it `<issue-number>-<slug>` and links it to the issue, so the PR appears in the issue's
+   sidebar and closes it on merge. Shorten the generated slug to a few words before creating,
+   e.g. `2-modulith-skeleton`. For the rare change without an issue, use `docs-<slug>` or
+   `chore-<slug>`.
 2. Write the tests first, then the code, then run `./gradlew test`. Do not change an existing test
    to make new code pass; a red pre-existing test is information about the change.
 3. Keep module boundaries: `ApplicationModules.verify()` runs in the suite and fails the build on
