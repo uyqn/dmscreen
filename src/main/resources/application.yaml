@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: dmscreen
+  ai:
+    mcp:
+      server:
+        name: dmscreen
+        protocol: STREAMABLE
+  jpa:
+    open-in-view: false
