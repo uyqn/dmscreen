@@ -6,6 +6,11 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/uyqn/dmscreen/actions/workflows/build.yml"><img alt="Build" src="https://img.shields.io/github/actions/workflow/status/uyqn/dmscreen/build.yml?branch=main&style=for-the-badge&logo=githubactions&logoColor=white&label=build"></a>
+  <a href="https://codecov.io/gh/uyqn/dmscreen"><img alt="Coverage" src="https://img.shields.io/codecov/c/github/uyqn/dmscreen?style=for-the-badge&logo=codecov&logoColor=white"></a>
+</p>
+
+<p align="center">
   <img alt="Java 25" src="https://img.shields.io/badge/Java-25_LTS-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white">
   <img alt="Spring Boot 4.1" src="https://img.shields.io/badge/Spring_Boot-4.1-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
   <img alt="Spring AI 2.0" src="https://img.shields.io/badge/Spring_AI-2.0-6DB33F?style=for-the-badge&logo=spring&logoColor=white">
