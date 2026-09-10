@@ -1,0 +1,6 @@
+CREATE SCHEMA dice;
+CREATE SCHEMA rules;
+CREATE SCHEMA character_;
+CREATE SCHEMA campaign;
+CREATE SCHEMA session;
+CREATE SCHEMA account;
