@@ -6,5 +6,9 @@ spring:
       server:
         name: dmscreen
         protocol: STREAMABLE
+  flyway:
+    validate-migration-naming: true
   jpa:
     open-in-view: false
+    hibernate:
+      ddl-auto: validate
