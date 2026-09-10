@@ -45,3 +45,24 @@ Tests: `./gradlew test` (Testcontainers, needs Docker).
 - Tool results are short and structured; voice clients read them aloud through the LLM.
 - Structured JSON logging via `logging.structured.format.console`; put campaign and session ids
   in MDC per tool call.
+
+## Persistence
+
+- Flyway owns the database. Hibernate runs with `ddl-auto: validate` and never creates or alters
+  a table; an entity without a matching migration fails startup.
+- Migrations live under `src/main/resources/db/migration/<module>/`, with `common/` for schemas
+  and infrastructure tables such as Modulith's `event_publication`. Flyway scans the whole tree
+  into one history, so folders are organisation only and versions must be unique across them.
+- File names: `V<yyyy>_<MM>_<dd>_<n>__<description>.sql`, for example
+  `V2026_09_10_1__create_schemas.sql`. Date is the day the migration was written, `n` counts up
+  across all folders that day and is never reused, description in snake_case, double underscore
+  before it. Java migrations follow the same name as a class, `V2026_09_10_1__CreateSchemas`.
+  Prefer SQL; Java only for data transformations SQL cannot express.
+- One schema per module, named after the module: `dice`, `rules`, `character_` (`character` is a
+  reserved word), `campaign`, `session`, `account`. Every table is schema-qualified in SQL
+  (`CREATE TABLE dice.roll`) and in JPA (`@Table(name = "roll", schema = "dice")`). A module's
+  migrations touch only its own schema.
+- No `REFERENCES` and no joins across schemas. Cross-module references are plain UUID columns;
+  existence is checked through the owning module's API, deletions propagate through events.
+- Table and column names singular snake_case, UUID primary keys, `TIMESTAMP WITH TIME ZONE` in
+  UTC. Details in design doc section 4.
