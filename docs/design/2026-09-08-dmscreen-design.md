@@ -220,7 +220,7 @@ timeout: return {status: PENDING, id}; the LLM calls await_roll(id) later
 
 ## 9. Cross-cutting
 
-**Logging.** Logback via Boot. Human-readable console in the `local` profile, ECS JSON
+**Logging.** Logback via Boot. Human-readable console in the `dev` profile, ECS JSON
 (`logging.structured.format.console=ecs`) in `aws`. MDC keys `campaignId` and `sessionId`
 set per tool call in the `mcp` adapter. Micrometer Tracing for trace ids once on AWS.
 
@@ -231,7 +231,7 @@ the `pgvector/pgvector:pg16` image via `@ServiceConnection`. Per module:
 Spring AI `McpSyncClient` over Streamable HTTP against a `RANDOM_PORT` context, asserting tool
 schemas and JSON results as a client sees them. Tests are written before the implementation.
 
-**Configuration.** YAML, profiles `local` (default, Docker Compose Postgres) and `aws`.
+**Configuration.** YAML, profiles `dev` (default, Docker Compose Postgres) and `aws`.
 Secrets only from environment variables.
 
 **Persistence.** Spring Data JPA with `ddl-auto=validate`; Flyway owns the schema. Records
