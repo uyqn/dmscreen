@@ -1,6 +1,8 @@
 spring:
   application:
     name: dmscreen
+  profiles:
+    default: dev
   ai:
     mcp:
       server:
@@ -12,3 +14,12 @@ spring:
     open-in-view: false
     hibernate:
       ddl-auto: validate
+---
+spring:
+  config:
+    activate:
+      on-profile: aws
+logging:
+  structured:
+    format:
+      console: ecs
