@@ -43,8 +43,10 @@ Tests: `./gradlew test` (Testcontainers, needs Docker).
 
 - Records for events, commands, tool inputs and results. No Lombok.
 - Tool results are short and structured; voice clients read them aloud through the LLM.
-- Structured JSON logging via `logging.structured.format.console`; put campaign and session ids
-  in MDC per tool call.
+- Profiles: `dev` is the default (human-readable console). `aws` switches to ECS JSON via
+  `logging.structured.format.console`. Activate profiles from outside the jar only.
+- Every tool call wraps its body in `try (LogContext.of(campaignId, sessionId))` so the ids land
+  in MDC and, under `aws`, on every JSON log line. Player-typed free text is logged at DEBUG.
 
 ## Persistence
 
@@ -58,6 +60,9 @@ Tests: `./gradlew test` (Testcontainers, needs Docker).
   across all folders that day and is never reused, description in snake_case, double underscore
   before it. Java migrations follow the same name as a class, `V2026_09_10_1__CreateSchemas`.
   Prefer SQL; Java only for data transformations SQL cannot express.
+- `spring.jpa.open-in-view` is `false`: entities never leave a service half-loaded, and the
+  connection is released when the transaction ends, not when the request ends. Services return
+  records or fully loaded entities; a `LazyInitializationException` in an adapter is a service bug.
 - One schema per module, named after the module: `dice`, `rules`, `character_` (`character` is a
   reserved word), `campaign`, `session`, `account`. Every table is schema-qualified in SQL
   (`CREATE TABLE dice.roll`) and in JPA (`@Table(name = "roll", schema = "dice")`). A module's
