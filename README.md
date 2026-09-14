@@ -89,12 +89,22 @@ colima start                 # or start Docker Desktop
 ./gradlew bootRun            # starts Postgres via Docker Compose, then the server
 ```
 
-The MCP endpoint is `http://localhost:8080/mcp`. Connect a client:
+The MCP endpoint is `http://localhost:8080/mcp` (Streamable HTTP; the legacy SSE transport is
+not enabled). Connect a client:
 
 ```bash
 # Claude Code
 claude mcp add --transport http dmscreen http://localhost:8080/mcp
+claude mcp list                # dmscreen … ✔ Connected
+
+# MCP Inspector
+npx @modelcontextprotocol/inspector
+# Add Servers → Streamable HTTP → http://localhost:8080/mcp, then connect.
+# Server info shows name, version and instructions; the tool list is empty until the first tool lands.
 ```
+
+If port 8080 is taken, start with `SERVER_PORT=8090 ./gradlew bootRun` and use that port in the
+commands above.
 
 Run the tests:
 
