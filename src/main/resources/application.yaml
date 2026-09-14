@@ -8,6 +8,10 @@ spring:
       server:
         name: dmscreen
         protocol: STREAMABLE
+        version: "@version@"
+        instructions: >-
+          dmscreen is the state, dice and rules engine for a D&D 5e campaign.
+          It never narrates; you do. Placeholder until #9.
   flyway:
     validate-migration-naming: true
   jpa:
