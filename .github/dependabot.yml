@@ -1,0 +1,20 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    schedule:
+      interval: weekly
+    directory: /
+
+  - package-ecosystem: gradle
+    schedule:
+      interval: weekly
+    directory: /
+    groups:
+      spring:
+        patterns:
+          - org.springframework*
+      other:
+        patterns:
+          - "*"
+        exclude-patterns:
+          - org.springframework*
