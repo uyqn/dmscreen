@@ -1,3 +1,5 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
 plugins {
     java
     id("org.springframework.boot") version "4.1.1"
@@ -82,5 +84,11 @@ tasks.jacocoTestReport {
     dependsOn(tasks.test) // tests are required to run before generating the report
     reports {
         xml.required = true
+    }
+}
+
+tasks.processResources {
+    filesMatching("application.yaml") {
+        filter<ReplaceTokens>("tokens" to mapOf("version" to version.toString()))
     }
 }
