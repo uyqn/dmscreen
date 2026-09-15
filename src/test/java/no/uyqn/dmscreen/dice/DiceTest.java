@@ -87,4 +87,14 @@ class DiceTest {
         var roll = assertAdvantage(Advantage.DISADVANTAGE);
         Assertions.assertThat(roll.total()).isEqualTo(7);
     }
+
+    @DisplayName("Invalid advantage rolls throws")
+    @ParameterizedTest
+    @CsvSource({"2d6, ADVANTAGE", "1d8+1d6, DISADVANTAGE"})
+    void invalidAdvantageRolls(String expression, Advantage advantage) {
+        var diceExpression = DiceExpression.parse(expression);
+        var dice = createSeededDice();
+        Assertions.assertThatThrownBy(() -> dice.roll(diceExpression, advantage))
+                .isInstanceOf(InvalidDiceExpression.class);
+    }
 }
