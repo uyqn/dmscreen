@@ -6,8 +6,10 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 class DiceConfiguration {
+    public static final String RANDOM_ALGORITHM = "L64X128MixRandom";
+
     @Bean
     public RandomGenerator randomGenerator() {
-        return RandomGenerator.of("L64X128MixRandom");
+        return RandomGenerator.of(RANDOM_ALGORITHM);
     }
 }
