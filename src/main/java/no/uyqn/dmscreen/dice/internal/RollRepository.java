@@ -1,4 +1,6 @@
 package no.uyqn.dmscreen.dice.internal;
 
-public interface RollRepository {
-}
+import java.util.UUID;
+import org.springframework.data.repository.CrudRepository;
+
+public interface RollRepository extends CrudRepository<Roll, UUID> {}
