@@ -44,7 +44,7 @@ class DiceExpressionTest {
 
     @DisplayName("DiceExpression#parse parses correctly size of the terms and modifiers")
     @ParameterizedTest
-    @CsvSource({"d20, 1, 0", "2d6, 1, 0", "2d6+3, 1, 3", "1d8-1, 1, -1", "1d8+1d6+2, 2, 2"})
+    @CsvSource({"d20, 1, 0", "2d6, 1, 0", "2d6+3, 1, 3", "1d8-1, 1, -1", "1d8+1d6+2, 2, 2", "2d6+10, 1, 10"})
     void parseDiceExpression(String expression, int size, int modifier) {
         var diceExpression = DiceExpression.parse(expression);
 
@@ -54,7 +54,7 @@ class DiceExpressionTest {
 
     @DisplayName("DiceExpression#toString is of canonical form")
     @ParameterizedTest
-    @CsvSource({"d20, 1d20", "2d6, 2d6", "2d6+3, 2d6+3", "1d8-1, 1d8-1", "1d8+1d6+2, 1d8+1d6+2"})
+    @CsvSource({"d20, 1d20", "2d6, 2d6", "2d6+3, 2d6+3", "1d8-1, 1d8-1", "1d8+1d6+2, 1d8+1d6+2", "2d6+10, 2d6+10"})
     void diceExpressionCanonicalForm(String expression, String canonicalForm) {
         var diceExpression = DiceExpression.parse(expression);
         Assertions.assertThat(diceExpression.toString()).isEqualTo(canonicalForm);
@@ -62,7 +62,7 @@ class DiceExpressionTest {
 
     @DisplayName("DiceExpression#parse throws InvalidDiceException for invalid expressions")
     @ParameterizedTest
-    @ValueSource(strings = {"d0", "0d6", "2d", "101d6", "1d1001", "abc"})
+    @ValueSource(strings = {"d0", "0d6", "2d", "101d6", "1d1001", "abc", "2d6-1d4"})
     void invalidDiceExpressions(String expression) {
         Assertions.assertThatThrownBy(() -> DiceExpression.parse(expression)).isInstanceOf(InvalidDiceExpression.class);
     }
