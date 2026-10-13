@@ -118,7 +118,7 @@ Full setup notes, including JDK, Docker and IDE choices, are in
 ## Roadmap
 
 - [x] Project skeleton: Spring Boot 4.1, Spring AI MCP server, Modulith, Postgres
-- [ ] `dice` and `roll_dice`, first tool end to end through Claude
+- [x] `dice` and `roll_dice`, first tool end to end through Claude
 - [ ] `character` and `campaign`: sheets, party, HP, conditions, resources
 - [ ] `session`: encounters, initiative, event log, recaps
 - [ ] `request_roll` with the blocking player flow
