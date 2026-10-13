@@ -1,5 +1,7 @@
 package no.uyqn.dmscreen.dice;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.Random;
 import java.util.random.RandomGenerator;
 import java.util.stream.Stream;
@@ -39,7 +41,7 @@ class DiceTest {
         var roll1 = createSeededDice().roll(diceExpression, advantage);
         var roll2 = createSeededDice().roll(diceExpression, advantage);
 
-        Assertions.assertThat(roll1).isEqualTo(roll2);
+        assertThat(roll1).isEqualTo(roll2);
     }
 
     @DisplayName("Every result within bounds and every face appears")
@@ -54,9 +56,9 @@ class DiceTest {
                 .toList();
         var sides = diceExpression.terms().getFirst().sides();
 
-        Assertions.assertThat(rolls).allMatch(roll -> roll >= 1 && roll <= sides);
+        assertThat(rolls).allMatch(roll -> roll >= 1 && roll <= sides);
         for (int i = 0; i < sides; i++) {
-            Assertions.assertThat(rolls).contains(i + 1);
+            assertThat(rolls).contains(i + 1);
         }
     }
 
@@ -70,7 +72,7 @@ class DiceTest {
         var dice = mockedDice();
         var diceExpression = DiceExpression.parse("d20");
         var roll = dice.roll(diceExpression, advantage);
-        Assertions.assertThat(roll.dice().size()).isEqualTo(2);
+        assertThat(roll.dice().size()).isEqualTo(2);
         return roll;
     }
 
@@ -78,14 +80,14 @@ class DiceTest {
     @Test
     void advantageKeepsHigher() {
         var roll = assertAdvantage(Advantage.ADVANTAGE);
-        Assertions.assertThat(roll.total()).isEqualTo(15);
+        assertThat(roll.total()).isEqualTo(15);
     }
 
     @DisplayName("Roll with disadvantage keeps the lower number")
     @Test
     void disadvantageKeepsLower() {
         var roll = assertAdvantage(Advantage.DISADVANTAGE);
-        Assertions.assertThat(roll.total()).isEqualTo(7);
+        assertThat(roll.total()).isEqualTo(7);
     }
 
     @DisplayName("Invalid advantage rolls throws")
