@@ -1,5 +1,7 @@
 package no.uyqn.dmscreen.dice;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -30,8 +32,8 @@ class DiceExpressionTest {
     void parseTerm(String expression, int count, int sides) {
         var term = DiceExpression.Term.parse(expression);
 
-        Assertions.assertThat(term.count()).isEqualTo(count);
-        Assertions.assertThat(term.sides()).isEqualTo(sides);
+        assertThat(term.count()).isEqualTo(count);
+        assertThat(term.sides()).isEqualTo(sides);
     }
 
     @DisplayName("DiceExpression.Term#toString is of canonical form")
@@ -39,7 +41,7 @@ class DiceExpressionTest {
     @CsvSource({"d20, 1d20", "2d6, 2d6", "1d8, 1d8", "1d6, 1d6"})
     void termCanonicalForm(String expression, String canonicalForm) {
         var term = DiceExpression.Term.parse(expression);
-        Assertions.assertThat(term.toString()).isEqualTo(canonicalForm);
+        assertThat(term.toString()).isEqualTo(canonicalForm);
     }
 
     @DisplayName("DiceExpression#parse parses correctly size of the terms and modifiers")
@@ -48,8 +50,8 @@ class DiceExpressionTest {
     void parseDiceExpression(String expression, int size, int modifier) {
         var diceExpression = DiceExpression.parse(expression);
 
-        Assertions.assertThat(diceExpression.terms().size()).isEqualTo(size);
-        Assertions.assertThat(diceExpression.modifier()).isEqualTo(modifier);
+        assertThat(diceExpression.terms().size()).isEqualTo(size);
+        assertThat(diceExpression.modifier()).isEqualTo(modifier);
     }
 
     @DisplayName("DiceExpression#toString is of canonical form")
@@ -57,7 +59,7 @@ class DiceExpressionTest {
     @CsvSource({"d20, 1d20", "2d6, 2d6", "2d6+3, 2d6+3", "1d8-1, 1d8-1", "1d8+1d6+2, 1d8+1d6+2", "2d6+10, 2d6+10"})
     void diceExpressionCanonicalForm(String expression, String canonicalForm) {
         var diceExpression = DiceExpression.parse(expression);
-        Assertions.assertThat(diceExpression.toString()).isEqualTo(canonicalForm);
+        assertThat(diceExpression.toString()).isEqualTo(canonicalForm);
     }
 
     @DisplayName("DiceExpression#parse throws InvalidDiceException for invalid expressions")
